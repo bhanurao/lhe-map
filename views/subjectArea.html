@@ -1,0 +1,55 @@
+﻿<div ng-controller="subjectAreaCtrl">
+    <div class="colHeading"><b> Please select an area of interest below1 </b></div>
+    <div class="interestarea">
+        {{message}}
+        <p> <b> Geography and structure of the provider and commissioner landscape</b></p>
+        <ul> 
+            <li> <a href="http://google.com">A1 Provider and commissioner landscape                  </a></li>
+            <li>  A2 Overview of A&E acute configuration                  </li>
+            <li>  A3 NHS acute volumes / scale analysis                   </li>
+            <li>  A4 Mental Health provision and performance              </li>
+            <li>  A5 Strategic change                                     </li>
+
+
+        </ul>
+        <br /><br />
+        <p><b>External environment factors (the local health economy)</b></p>
+        <ul>
+            <li> B1 Financial analysis, relative risk                             </li>
+            <li> B2 Population need characteristics vs funding allocations        </li>
+            <li> B3 LHE finances                                                  </li>
+            <li> B4 GPs                                                           </li>
+            <li> B5 Emergency admissions for ACSCs                                </li>
+            <li>
+                <div>
+                    B6 Cross operational concerns – A&E, RTT and DTOCs
+                    <ul>
+                        <li> <input type="checkbox" ng-model="chk1" ng-true-value='1' ng-false-value='0' >  A&E</li>
+                        <li> <input type="checkbox" ng-model="chk2" ng-true-value='1' ng-false-value='0' >  RTT</li>
+                        <li> <input type="checkbox" ng-model="chk4" ng-true-value='1' ng-false-value='0' > DTOCs</li>
+                    </ul>
+                </div>
+            </li>
+            <li> <input type="checkbox" ng-model="chk3" ng-true-value='1' ng-false-value='0'>  B7 Bed occupancy and winter funding             </li>
+            <li>    B8 Elective operational and strategic planning  </li>
+            <li>    B9 Workforce                                    </li>
+
+        </ul>
+
+        <br /><br />
+        <p><b>Trust level</b></p>
+        <ul>
+            <li> C1 FT finances                            </li>
+            <li> C2 Agency use and leavers (FTs only)      </li>
+            <li> C3 Staff survey trend analysis            </li>
+            <li> C4 Estates                                </li>
+            <li> C5 Quality                                </li>
+            <li> C6 CIPs                                   </li>
+        </ul>
+    </div>
+
+    <!-- Infopanel-->
+    <div draggable ng-include="'../spdeploy/views/infoPanelKpiInc.html'" ng-show="selectedproviderKPIs" id="kpiInfopanel"></div>
+        
+   </div>
+        

@@ -1,0 +1,14 @@
+﻿<div>
+    <accordion close-others="true">
+        <div ng-repeat="region  in treedata">
+            <accordion-group is-open='region.open' id="region{{region.ID}}" >
+                <accordion-heading>
+                    {{region.Name}}<i class="pull-right glyphicon" ng-click='selectRegion(region)'  ng-class="{'glyphicon-chevron-down': region.open, 'glyphicon-chevron-right': !region.open}"></i>
+                </accordion-heading>
+                <ul ng-repeat="lhe in region.SubMappingHierarchy" class="nav nav-pills nav-stacked" >
+                    <li ng-class="{'active': lhe.active}" id="lhe{{lhe.ID}}" ng-click='selectLHE(lhe)' ng-class-even=""><a href="#">{{lhe.ID}}: {{lhe.Name}}</a></li>
+                </ul>
+            </accordion-group>
+        </div>
+    </accordion>
+ </div>

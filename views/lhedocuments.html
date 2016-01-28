@@ -1,0 +1,12 @@
+﻿<div ng-show='documents'>
+    <div class="lhedocs">
+        <table class="table-bordered" style="width:100%">
+            <tbody data-ng-repeat="doc in documents">
+                <tr>
+                    <td><a href="{{doc.Path}}\{{doc.Name}}">{{doc.Title}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

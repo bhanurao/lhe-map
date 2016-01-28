@@ -1,0 +1,33 @@
+﻿
+<div>
+    <accordion close-others="true">
+        <div ng-repeat="region  in treedata">
+            <accordion-group is-open='region.open' id="region{{region.ID}}" ng-click='selectRegion(region)'>
+                <accordion-heading>
+                    {{region.Name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': region.open, 'glyphicon-chevron-right': !region.open}"></i>
+                </accordion-heading>
+                <ul ng-repeat="lhe in region.SubMappingHierarchy" class="nav nav-pills nav-stacked">
+                    <li ng-class="{'active': lhe.active}" id="lhe{{lhe.ID}}" ng-class-even="" ng-click='selectLHE(lhe)'>
+                        <a href="#" ng-click='selectLHE(lhe)'>{{lhe.ID}}: {{lhe.Name}}</a>
+                        <div ng-show="lhe.active">
+                            <div ng-show='lhe.docloaded!=true'>
+                                Loading ..<img src="../SPdeploy/img/loading_spinner.gif" style="width:40px;" />
+                            </div>
+                            <div ng-show='lhe.docloaded'>
+                                <ul>
+                                    <li>
+                                        <table class="table-bordered" style="width:100%">
+                                            <tbody data-ng-repeat="doc in documents track by $index|filter:{LHECode:lhe.ID}">
+						<tr><td><a target="_blank" href="{{doc.EncodedAbsUrl}}">&nbsp;{{doc.FieldValuesAsText.FileRef|monitorAnalysespacksSp13}}</a></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </accordion-group>
+        </div>
+    </accordion>
+</div>

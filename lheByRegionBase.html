@@ -1,0 +1,46 @@
+﻿<script>
+    var gpath = "../lhejson/";
+</script>
+<script src="../SPDeploy/js/jquery-1.4.4.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular-route.min.js"></script>
+<script src="//maps.googleapis.com/maps/api/js"></script>
+<!-- js include-->
+<script src="../SPDeploy/js/lhe_center_latlng.js"></script>
+
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Module -->
+<script src="../SPDeploy/module/mapmodule.js"></script>
+
+<!-- directive-->
+<!-- Services -->
+<script src="../SPDeploy/services/jsondata.js"></script>
+<script src="../SPDeploy/services/googleMap.js"></script>
+<script src="../SPDeploy/services/dataShare.js"></script>
+<script src="../SPDeploy/services/lheHierarchySrv.js"></script>
+<script src="../SPDeploy/services/gMapSrv.js"></script>
+<script src="../SPDeploy/services/SharePointSrv.js"></script>
+
+<!-- Controller  -->
+<script src="../SPDeploy/controller/mainLheByRegionCtrl.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="../SPDeploy/css/css6.css">
+<link rel="stylesheet" type="text/css" href="../SPDeploy/css/angular.treeview.css">
+
+
+
+
+
+
+<div id="data" ng-app="myApp" ng-controller="mainLheByRegionCtrl">
+    <div class="column2-left">
+        <div ng-include="'../SPDeploy/views/SearchBoxCtrl.html'"></div>
+        <div ng-include="'../SPDeploy/views/lhebyRegionAccordion.html'"></div>
+    </div>
+    <div class="column2-right" id="map"></div>
+</div>
+<script>
+    google.maps.event.addDomListener(window, 'load', initMap);
+</script>

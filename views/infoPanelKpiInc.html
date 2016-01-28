@@ -1,0 +1,78 @@
+﻿<div ng-if='((chk1 + chk2 + chk3 + chk4).indexOf("1")> -1)' class="kpiinfopanel">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click='closeKpi()'>&times;</button>
+            <h4 class="modal-title">Quarterly KPI data</h4>
+        </div>
+        <div class="modal-body">
+
+            <table class="table-bordered">
+                <tr class="colHeading">
+                    <td>LHE: {{selectedLHE.Name}}</td>
+                    <td colspan="5" ng-if="chk1">A&E</td>
+                    <td colspan="5" ng-if="chk2">RTT</td>
+                    <td colspan="5" ng-if="chk3">Bed Occupancy</td>
+                    <td colspan="5" ng-if="chk4">DTOCs</td>
+                </tr>
+                <tr class="colHeading kpidata">
+                    <td> Organisation  Name</td>
+                    <td ng-if="chk1">{{providerkpiHeader.Col_5  |monitorKpiHeadingFormat}}  </td>
+                    <td ng-if="chk1">{{providerkpiHeader.Col_6  |monitorKpiHeadingFormat}}  </td>
+                    <td ng-if="chk1">{{providerkpiHeader.Col_7  |monitorKpiHeadingFormat}}  </td>
+                    <td ng-if="chk1">{{providerkpiHeader.Col_8  |monitorKpiHeadingFormat}}  </td>
+                    <td ng-if="chk1">{{providerkpiHeader.Col_9  |monitorKpiHeadingFormat}}  </td>
+
+                    <td ng-if="chk2">{{providerkpiHeader.Col_10|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk2">{{providerkpiHeader.Col_11|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk2">{{providerkpiHeader.Col_12|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk2">{{providerkpiHeader.Col_13|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk2">{{providerkpiHeader.Col_14|monitorKpiHeadingFormat}}   </td>
+
+                    <td ng-if="chk3">{{providerkpiHeader.Col_15|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk3">{{providerkpiHeader.Col_16|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk3">{{providerkpiHeader.Col_17|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk3">{{providerkpiHeader.Col_18|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk3">{{providerkpiHeader.Col_19|monitorKpiHeadingFormat}}   </td>
+
+                    <td ng-if="chk4">{{providerkpiHeader.Col_20|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk4">{{providerkpiHeader.Col_21|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk4">{{providerkpiHeader.Col_22|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk4">{{providerkpiHeader.Col_23|monitorKpiHeadingFormat}}   </td>
+                    <td ng-if="chk4">{{providerkpiHeader.Col_24|monitorKpiHeadingFormat}}   </td>
+                </tr>
+
+
+                <tbody data-ng-repeat="q in selectedproviderKPIs ">
+                    <tr>
+                        <td class="kpiorg">{{q.Col_4}}</td>
+                        <td class="kpidata" ng-if="chk1" ng-class='getColorClass(q.Col_5,"AE")'>    {{q.Col_5       |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk1" ng-class='getColorClass(q.Col_6,"AE")'>    {{q.Col_6       |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk1" ng-class='getColorClass(q.Col_7,"AE")'>    {{q.Col_7       |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk1" ng-class='getColorClass(q.Col_8,"AE")'>    {{q.Col_8       |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk1" ng-class='getColorClass(q.Col_9,"AE")'>    {{q.Col_9       |monitorKpiPercentageFormat}}</td>
+
+                        <td class="kpidata" ng-if="chk2" ng-class='getColorClass(q.Col_10,"RTT")'>   {{q.Col_10      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk2" ng-class='getColorClass(q.Col_11,"RTT")'>   {{q.Col_11      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk2" ng-class='getColorClass(q.Col_12,"RTT")'>   {{q.Col_12      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk2" ng-class='getColorClass(q.Col_13,"RTT")'>   {{q.Col_13      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk2" ng-class='getColorClass(q.Col_14,"RTT")'>   {{q.Col_14      |monitorKpiPercentageFormat}}</td>
+
+                        <td class="kpidata" ng-if="chk3" ng-class='getColorClass(q.Col_15,"BO")'>    {{q.Col_15      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk3" ng-class='getColorClass(q.Col_16,"BO")'>    {{q.Col_16      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk3" ng-class='getColorClass(q.Col_17,"BO")'>    {{q.Col_17      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk3" ng-class='getColorClass(q.Col_18,"BO")'>    {{q.Col_18      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk3" ng-class='getColorClass(q.Col_19,"BO")'>    {{q.Col_19      |monitorKpiPercentageFormat}}</td>
+
+                        <td class="kpidata" ng-if="chk4" ng-class='getColorClass(q.Col_20,"DTO")'>   {{q.Col_20      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk4" ng-class='getColorClass(q.Col_21,"DTO")'>   {{q.Col_21      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk4" ng-class='getColorClass(q.Col_22,"DTO")'>   {{q.Col_22      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk4" ng-class='getColorClass(q.Col_23,"DTO")'>   {{q.Col_23      |monitorKpiPercentageFormat}}</td>
+                        <td class="kpidata" ng-if="chk4" ng-class='getColorClass(q.Col_24,"DTO")'>   {{q.Col_24      |monitorKpiPercentageFormat}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
