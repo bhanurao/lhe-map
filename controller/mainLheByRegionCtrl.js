@@ -5,17 +5,11 @@ function ($scope, $routeParams, $rootScope, lheHierarchySrv, dataAcessService, j
     var selectedRegion = null;
     $scope.message = "@test_mainLheByRegionCtrl";
 
-
-
     // Call to Get the Json data
-    
-
     lheHierarchySrv.loadHierarchyTree();
     lheHierarchySrv.loadJsonKpi();
 
-
     $rootScope.$on('HierarchyTreeLoaded', function () {
-        
         $scope.initLheByRegion();
     });
 
@@ -27,14 +21,10 @@ function ($scope, $routeParams, $rootScope, lheHierarchySrv, dataAcessService, j
         lheHierarchySrv.setRegionLabels();
     }
 
-
     $rootScope.$on('JSONKPILoaded', function () {
         
         $scope.kpiorg = lheHierarchySrv.JSONKPI;
     });
-
-
-
 
     $scope.selectRegion = function (region) {
 
@@ -51,9 +41,7 @@ function ($scope, $routeParams, $rootScope, lheHierarchySrv, dataAcessService, j
         lheHierarchySrv.setLHELabels(region);
     }
 
-
     $scope.selectLHE = function (selectedNode) {
-
         if (selectedLHE && selectedNode.ID == selectedLHE.ID) { return false; }
         $scope.documents = null;
         selectedLHE ? selectedLHE.active = false : '';
@@ -63,7 +51,6 @@ function ($scope, $routeParams, $rootScope, lheHierarchySrv, dataAcessService, j
         selectedLHE.active = true;
         $scope.getDocuments(selectedLHE);
     }
-
 
     var renderDocumentTable = function (data) {
         $scope.documents = data;
