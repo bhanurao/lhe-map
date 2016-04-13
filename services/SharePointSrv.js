@@ -3,7 +3,6 @@ app.factory('sharePointSrv', ['$rootScope', '$http',
   function ($rootScope, $http) {
       var sharePointSrv = {};
       sharePointSrv = this;
-
       //utility function to get parameter from query string
       this.getQueryStringParameter = function (urlParameterKey) {
           var params = document.URL.split('?')[1].split('&');
@@ -38,6 +37,10 @@ app.factory('sharePointSrv', ['$rootScope', '$http',
               });
           }
       };
+
+
+
+
 
       this.getData = function (callback, query) {
           
