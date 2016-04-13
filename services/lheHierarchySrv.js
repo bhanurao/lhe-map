@@ -17,6 +17,7 @@ function ($rootScope, $location, $routeParams, jsondata, gMapSrv ) {
       this.mapPosition = {}; 
 
       this.selectedLHEFillColor = "red"; 
+      
     //  this.getAllRegions = function ()
     //  {
     //      var regions ={} ; 
@@ -174,10 +175,6 @@ function ($rootScope, $location, $routeParams, jsondata, gMapSrv ) {
           
       }
 
-        
-
-
-
       this.loadJsonKpi = function ()
       {
           jsondata.GetData('json/subjectareakpijson.js', callback_setJSONKPI);
@@ -229,8 +226,6 @@ function ($rootScope, $location, $routeParams, jsondata, gMapSrv ) {
           }
 
       }
-
-        
 
       this.getJsonObjectbyKey = function (key,value, objectarray) {
           var objarray = {};
