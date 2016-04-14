@@ -49,9 +49,7 @@ app.directive('draggable', ['$document',  function ($document ) {
         link: function (scope, elm, attrs) {
             var startX, startY, initialMouseX, initialMouseY;
             elm.css({ position: 'absolute' });
-              
-
-
+ 
             elm.bind('mousedown', function ($event) {
                 startX = elm.prop('offsetLeft');
                 startY = elm.prop('offsetTop');
