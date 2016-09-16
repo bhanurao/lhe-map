@@ -1,4 +1,2 @@
 # lhe-map
-Shows the LHE on UK map using Google API
-
-Developed as an in house project
+Shows the NHS local health economies on UK map with some interesting data overlays
