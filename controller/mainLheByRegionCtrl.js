@@ -1,89 +1,88 @@
 ﻿app.controller('mainLheByRegionCtrl', ["$scope", "$routeParams", "$rootScope", "lheHierarchySrv", "dataAcessService", "jsondata", "sharePointSrv",
-function ($scope, $routeParams, $rootScope, lheHierarchySrv, dataAcessService, jsondata, sharePointSrv) {
-    var me = this;
-    var selectedLHE = null;
-    var selectedRegion = null;
-    $scope.message = "@test_mainLheByRegionCtrl";
+    function($scope, $routeParams, $rootScope, lheHierarchySrv, dataAcessService, jsondata, sharePointSrv) {
+        var me = this;
+        var selectedLHE = null;
+        var selectedRegion = null;
+        $scope.message = "@test_mainLheByRegionCtrl";
 
-    // Call to Get the Json data
-    lheHierarchySrv.loadHierarchyTree();
-    lheHierarchySrv.loadJsonKpi();
+        // Call to Get the Json data
+        lheHierarchySrv.loadHierarchyTree();
+        lheHierarchySrv.loadJsonKpi();
 
-    $rootScope.$on('HierarchyTreeLoaded', function () {
-        $scope.initLheByRegion();
-    });
+        $rootScope.$on('HierarchyTreeLoaded', function() {
+            $scope.initLheByRegion();
+        });
 
-    ///////////////// 
-    // invoke map method
-    $scope.initLheByRegion = function (data) {
-        $scope.treedata = lheHierarchySrv.treedata;
-        lheHierarchySrv.fillRegionsColors();
-        lheHierarchySrv.setRegionLabels();
-    }
+        ///////////////// 
+        // invoke map method
+        $scope.initLheByRegion = function(data) {
+            $scope.treedata = lheHierarchySrv.treedata;
+            lheHierarchySrv.fillRegionsColors();
+            lheHierarchySrv.setRegionLabels();
+        }
 
-    $rootScope.$on('JSONKPILoaded', function () {
-        
-        $scope.kpiorg = lheHierarchySrv.JSONKPI;
-    });
+        $rootScope.$on('JSONKPILoaded', function() {
 
-    $scope.selectRegion = function (region) {
+            $scope.kpiorg = lheHierarchySrv.JSONKPI;
+        });
 
-        if (selectedRegion && region.ID == selectedRegion.ID) { return false; }
+        $scope.selectRegion = function(region) {
 
-        selectedRegion ? selectedRegion.open = false : '';
-        selectedRegion = region;
-        selectedRegion.open = true;
-        lheHierarchySrv.removeLabels();
-        lheHierarchySrv.removeRegionsColors();
+            if (selectedRegion && region.ID == selectedRegion.ID) {
+                return false;
+            }
 
-        //lheHierarchySrv.selectRegion(region);
-        lheHierarchySrv.selectLHEByRegion(region);
-        lheHierarchySrv.setLHELabels(region);
-    }
+            selectedRegion ? selectedRegion.open = false : '';
+            selectedRegion = region;
+            selectedRegion.open = true;
+            lheHierarchySrv.removeLabels();
+            lheHierarchySrv.removeRegionsColors();
 
-    $scope.selectLHE = function (selectedNode) {
-        if (selectedLHE && selectedNode.ID == selectedLHE.ID) { return false; }
-        $scope.documents = null;
-        selectedLHE ? selectedLHE.active = false : '';
-        selectedLHE ? selectedLHE.docloaded = false : '';
-        selectedLHE = selectedNode;
-        lheHierarchySrv.selectLhe(selectedLHE)
-        selectedLHE.active = true;
-        $scope.getDocuments(selectedLHE);
-    }
+            //lheHierarchySrv.selectRegion(region);
+            lheHierarchySrv.selectLHEByRegion(region);
+            lheHierarchySrv.setLHELabels(region);
+        }
 
-    var renderDocumentTable = function (data) {
-        $scope.documents = data;
-        selectedLHE.docloaded = true;
-    }
+        $scope.selectLHE = function(selectedNode) {
+            if (selectedLHE && selectedNode.ID == selectedLHE.ID) {
+                return false;
+            }
+            $scope.documents = null;
+            selectedLHE ? selectedLHE.active = false : '';
+            selectedLHE ? selectedLHE.docloaded = false : '';
+            selectedLHE = selectedNode;
+            lheHierarchySrv.selectLhe(selectedLHE)
+            selectedLHE.active = true;
+            $scope.getDocuments(selectedLHE);
+        }
 
-    $scope.getDocuments = function (lhe) {
-        var lheCode = lhe.ID;
-        
-       // var query = "https://connect2.monitor-nhsft.gov.uk/sites/LHE/analysispack/_vti_bin/listdata.svc/LHEData()?$orderby=Created desc&$filter=LHECode eq'" + lheCode + "'";
-	var query = "/_api/web/Lists/getbytitle('LHEData')/items?$select=Title,EncodedAbsUrl,FieldValuesAsText/FileRef,Created&$expand=FieldValuesAsText&$filter=LHECode eq '" + lheCode + "'&$orderby=Created desc";
+        var renderDocumentTable = function(data) {
+            $scope.documents = data;
+            selectedLHE.docloaded = true;
+        }
 
-        sharePointSrv.getData(renderDocumentTable, query);
+        $scope.getDocuments = function(lhe) {
+            var lheCode = lhe.ID;
+            var query = "/_api/web/Lists/getbytitle('LHEData')/items?$select=Title,EncodedAbsUrl,FieldValuesAsText/FileRef,Created&$expand=FieldValuesAsText&$filter=LHECode eq '" + lheCode + "'&$orderby=Created desc";
+            sharePointSrv.getData(renderDocumentTable, query);
+        }
 
-    }
-
-    $scope.orgSelectedFromSearchBox = function (org) {
-        var found = false;
-        angular.forEach($scope.treedata, function (region) {
-            angular.forEach(region.SubMappingHierarchy, function (lhe) {
-                if (lhe.ID == org.Col_1) {
-                    found = true;
-                    $scope.selectLHE(lhe);
-                    region.open = true;
-                }
+        $scope.orgSelectedFromSearchBox = function(org) {
+            var found = false;
+            angular.forEach($scope.treedata, function(region) {
+                angular.forEach(region.SubMappingHierarchy, function(lhe) {
+                    if (lhe.ID == org.Col_1) {
+                        found = true;
+                        $scope.selectLHE(lhe);
+                        region.open = true;
+                    }
+                    if (found) return;
+                });
                 if (found) return;
             });
-            if (found) return;
-        });
+        }
+
+        $scope.lheHierarchySrv_message = lheHierarchySrv.message;
+
     }
-
-    $scope.lheHierarchySrv_message = lheHierarchySrv.message;
-
-
-}
 ]);
